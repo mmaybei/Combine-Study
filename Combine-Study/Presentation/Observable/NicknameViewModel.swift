@@ -8,11 +8,11 @@
 import Foundation
 
 final class NicknameViewModel {
-    var isValid: ((Bool) ->  Void)?
+    var isValid = ObservablePattern<Bool>.init(false)
     
     func checkValid(name: String?) {
         guard let name else { return }
         
-        isValid?(name.count >= 5)
+        isValid.value = name.count >= 5
     }
 }

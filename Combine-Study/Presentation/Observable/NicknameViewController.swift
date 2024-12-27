@@ -33,7 +33,8 @@ final class NicknameViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.isValid = { [weak self] isValid in
+        viewModel.isValid.bind { [weak self] isValid in
+            guard let isValid else { return }
             self?.rootView.nextButton.isEnabled = isValid ? true: false
             self?.rootView.nextButton.backgroundColor = isValid ? .mainPurple : .gray2
         }
